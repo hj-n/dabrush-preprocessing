@@ -4,25 +4,24 @@ from _snnknn import KnnSnn as ks
 
 
 
-def reader(dataset_name, is_example=True):
+def reader(dataset_name):
 	"""
 	read file from the path
 	"""
-	if is_example:
+
+	if os.path.exists(f"./example_datasets/{dataset_name}/data.npy"):
 		data_path = f"./example_datasets/{dataset_name}/data.npy"
 		label_path = f"./example_datasets/{dataset_name}/label.npy"
-	else:
+	elif os.path.exists(f"./datasets/{dataset_name}/data.npy"):
 		data_path = f"./datasets/{dataset_name}/data.npy"
 		label_path = f"./datasets/{dataset_name}/label.npy"
+	else:
+		raise Exception(f"File not found: {dataset_name}")
 
 	data = None
 	labels = None
 	
-	if not os.path.exists(data_path):
-		raise Exception(f"File not found: {data_path}")
-	else:
-		data = np.load(data_path).astype(np.float32)
-
+	data = np.load(data_path).astype(np.float32)
 	if os.path.exists(label_path):
 		labels = np.load(label_path).astype(np.int32)
 
