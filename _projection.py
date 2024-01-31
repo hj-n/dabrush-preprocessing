@@ -34,8 +34,9 @@ def check_and_generate_projection(data, spec, directory):
 	### check whehter projection exists in the directory
 	if not os.path.exists(f"./{directory}/{dataset}/{projection}.npy"):
 		print(f"#### Projection not found, generating projection...")
-		projection = generate_projection(data, spec, directory)
+		ld = generate_projection(data, spec, directory)
 	else:
+		ld = np.load(f"./{directory}/{dataset}/{projection}.npy")
 		print(f"#### Projection found, skipping projection generation.")
 	
-	return
+	return ld

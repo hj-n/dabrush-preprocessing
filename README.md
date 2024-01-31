@@ -12,7 +12,7 @@
 - `_projection.py`: this script generates dimensionality reduction projections (i.e., multidimensional projections). Note that you can also use your own custom projections
 - Arguments
 
-- `_generate.py`: this script finally generates preprocessed files
+- `_preprocess.py`: this script finally generates preprocessed files
 
 - `_helpers.py`: this script provides helper functions for preprocessing
 
@@ -20,7 +20,7 @@
   - The script will automatically...
 	  1. Run sanity check for the specification
 	  2. read and sample data based on specification
-		3. 
+		3. Check whether the projection exists and if not, generate
 
 
 ### File directories
@@ -40,6 +40,9 @@
 
 - `specs/`: Place your specification for generating distortion-aware data here
   - the name of the file should be identical to the id of the specification
+
+- `preprocessed/`: Place for your preprocessed file to be saved
+  - the name of the file will be identical to the id of the specification, but will ends with `_preprocessed.json`
 
 ### Specifications
 

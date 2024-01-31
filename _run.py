@@ -2,7 +2,7 @@ import argparse, json, os
 
 import _helpers as hp
 import _projection as prj
-
+import _preprocess as pp
 
 parser = argparse.ArgumentParser(description='Run preprocessing for distortion-aware brushing')
 parser.add_argument("--spec", "-s", type=str, help="ID of the specification to run preprocessing")
@@ -69,5 +69,20 @@ Generate projection if not exists
 
 print("STEP 3: GENERATE A LOW-D PROJECTION")
 print("#### Checking whether projection exists...")
-prj.check_and_generate_projection(data, spec, directory)
+ld = prj.check_and_generate_projection(data, spec, directory)
 print()
+
+"""
+Preprocess the data, generating required information to run brushing techniques
+"""
+
+print("STEP 4: PREPROCESSING")
+
+print("#### Start preprocessing...")
+preprocessed = pp.preprocess(data, ld, labels, spec)
+
+print("#### Preprocessing finished! Saving preprocessed data...")
+with open(f"./preprocessed/{spec_id}_preprocessed.json", "w") as f:
+	json.dump(preprocessed, f)
+
+print("\nALL SET!!")
