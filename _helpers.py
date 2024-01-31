@@ -9,9 +9,11 @@ def read_dataset(dataset_name):
 	if os.path.exists(f"./example_datasets/{dataset_name}/data.npy"):
 		data_path = f"./example_datasets/{dataset_name}/data.npy"
 		label_path = f"./example_datasets/{dataset_name}/label.npy"
+		directory = "example_datasets"
 	elif os.path.exists(f"./datasets/{dataset_name}/data.npy"):
 		data_path = f"./datasets/{dataset_name}/data.npy"
 		label_path = f"./datasets/{dataset_name}/label.npy"
+		directory = "datasets"
 	else:
 		raise Exception(f"Dataset not found in either example_datasets/ and datasets/ directory: {dataset_name}")
 
@@ -22,7 +24,7 @@ def read_dataset(dataset_name):
 	if os.path.exists(label_path):
 		labels = np.load(label_path).astype(np.int32)
 
-	return data, labels
+	return data, labels, directory
 
 def sample_dataset(data, labels, spec):
 

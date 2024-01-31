@@ -18,8 +18,9 @@
 
 - `_run.py`: THIS SCRIPT IS THE FILE THAT USED SHOULD RUN.
   - The script will automatically...
-	  - read and sample data based on specification
-		- 
+	  1. Run sanity check for the specification
+	  2. read and sample data based on specification
+		3. 
 
 
 ### File directories

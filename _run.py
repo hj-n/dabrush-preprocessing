@@ -1,6 +1,7 @@
 import argparse, json, os
 
 import _helpers as hp
+import _projection as prj
 
 
 parser = argparse.ArgumentParser(description='Run preprocessing for distortion-aware brushing')
@@ -23,6 +24,8 @@ else:
 """
 RUN SANITY CHECK
 """
+print("STEP 1: SANITY CHECK")
+print("#### Running sanity check for the specification...")
 
 REQUIRED_KEYS = ["dataset", "projection", "techniques"] 
 OPTIONAL_KEYS = ["labels", "sampling_rate", "distance", "max_neighbors"]
@@ -39,11 +42,32 @@ for key in REQUIRED_KEYS:
 		raise Exception(f"Required key not found in the specification: {key}")
 
 
+print("#### Sanity check passed!")
+print()
+
 """
 READ A DATASET and LABELS (if exists)
 Then sample the dataset based on the sepcification
 """
 
-data, labels = hp.read_dataset(spec["dataset"])
+print("STEP 2: READ and SAMPLE DATASET")
+print("#### Reading and Sampling the dataset...")
+
+data, labels, directory = hp.read_dataset(spec["dataset"])
 data, labels = hp.sample_dataset(data, labels, spec)
 
+print("#### Dataset reading and sampling finished!")
+if labels is not None:
+	print(f"#### - size # / dim # / label #:  {data.shape[0]} / {data.shape[1]} / {len(set(labels))}")
+else:
+	print("#### - size # / dim #: ", data.shape[0], data.shape[1])
+print()
+
+"""
+Generate projection if not exists
+"""
+
+print("STEP 3: GENERATE A LOW-D PROJECTION")
+print("#### Checking whether projection exists...")
+prj.check_and_generate_projection(data, spec, directory)
+print()
