@@ -3,6 +3,14 @@
 - This repository provides the preprocessing code for Distortion-Aware Brushing
 - Also provides the preprocessing code for alternative MD brushing techniques: Similarity Brushing, M-Ball Brushing, Data-Driven Brushing
 
+## Quick run with example dataset
+
+1. Clone the repository
+2. Install dependencies (TBA)
+3. Run the script using the example dataset (fashion_mnist, sampled with UMAP projection)
+```sh
+python3 _run.py -s fmnist_small_umap
+```
 
 ### Functions for preprocessing
 
@@ -21,6 +29,7 @@
 	  1. Run sanity check for the specification
 	  2. read and sample data based on specification
 		3. Check whether the projection exists and if not, generate
+		4. Run preprocessing and save the preprocessed file as JSON
 
 
 ### File directories
