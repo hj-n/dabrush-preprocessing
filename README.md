@@ -9,7 +9,18 @@
 - `_snnknn.py`: File providing functions for computing SNN-based similarity measure (KNN + SNN)
   - imported from https://github.com/hj-n/gpu-knn-snn-graph
 
-- `_generate.py`: Run this script to 
+- `_projection.py`: this script generates dimensionality reduction projections (i.e., multidimensional projections). Note that you can also use your own custom projections
+- Arguments
+
+- `_generate.py`: this script finally generates preprocessed files
+
+- `_helpers.py`: this script provides helper functions for preprocessing
+
+- `_run.py`: THIS SCRIPT IS THE FILE THAT USED SHOULD RUN.
+  - The script will automatically...
+	  - read and sample data based on specification
+		- 
+
 
 ### File directories
 
@@ -35,6 +46,11 @@ Specifications should be declared to generate the preprocessed data for the brus
 
 - `dataset` (REQUIRED): name of the dataset (e.g., "fashion_mnist")
   - `_generate.py` file automatically searches whether the dataset exists in `example_datasets/` or `datasets/` directory
+- `projection` (REQUIRED): option to generate multidimensional projections
+  - the str provided here is interpreted as a file name of the projected data
+	- e.g., if `"umap"` is given, the system will read the file `umap.npy` in the same directory
+	- if the given name is not found, the system will generate the projection if the available projection methods are provided
+	  - currently supported: `umap`, `tsne`, `pca`
 - `techniques` (REQUIRED): List of the brushing techniques to be applied
   - currently supported:
 	  - `dab`: Distortion-Aware Brushing

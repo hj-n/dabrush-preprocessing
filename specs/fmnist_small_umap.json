@@ -1,5 +1,6 @@
 {
 	"dataset": "fashion_mnist",
+	"projection": "umap",
 	"techniques": ["dab"],
 	"labels": [0, 1, 2, 3],
 	"sampling_rate": 0.7,
