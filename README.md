@@ -31,11 +31,11 @@
 
 ### Specifications
 
-Specification should be a `.json` file that is consists of a single dictionary, containing following fields:
+Specifications should be declared to generate the preprocessed data for the brushing techniques.  Specification should be a `.json` file that is consists of a single dictionary, containing following fields:
 
-- `dataset`: name of the dataset (e.g., "fashion_mnist")
+- `dataset` (REQUIRED): name of the dataset (e.g., "fashion_mnist")
   - `_generate.py` file automatically searches whether the dataset exists in `example_datasets/` or `datasets/` directory
-- `technique`: List of the brushing techniques to be applied
+- `techniques` (REQUIRED): List of the brushing techniques to be applied
   - currently supported:
 	  - `dab`: Distortion-Aware Brushing
 	- will be implemented:
@@ -45,18 +45,23 @@ Specification should be a `.json` file that is consists of a single dictionary, 
   - e.g., `["dab, "sb", "mbb"]`,
 - `labels`: List of the labels to be sampled
 	- e.g., `[0, 2, 5, 6]`
+	- default: `None` (all labels)
 - `sampling_rate`: percentage of the data to be sampled
 	- e.g., `0.1` for 10% of the data
+	- default: `1.0` (100%)
 - `distance`: the specification that contains the info of the distance function used for distortion-aware brushing and similarity brushing
   - detailed specifiaction: 
     > ```json
 		> {
-		> 	`metric`: `euclidean` | `snn`,
+		> 	`metric`: `euclidean` | `cosine` | `snn`,
 		> 	`params`: {
 		> 		`k`: // number of nearest neighbors to be used for computing SNN
 		>   }
 		> }
 		> ```
+	- default: `snn` with `k=10`
+- `max_neighbors`: maximum number of neighbors to be considered for distortion-aware brushing
+	- default: 100 
 		
 
 

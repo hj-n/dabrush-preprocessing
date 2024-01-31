@@ -1,6 +1,6 @@
 {
 	"dataset": "fashion_mnist",
-	"technique": ["dab"],
+	"techniques": ["dab"],
 	"labels": [0, 1, 2, 3],
 	"sampling_rate": 0.7,
 	"distance": {
@@ -8,5 +8,6 @@
 		"params": {
 			"k": 10
 		}
-	}
+	},
+	"max_neighbors": 100
 }
