@@ -1,0 +1,14 @@
+{
+	"dataset": "fashion_mnist",
+	"projection": "pca",
+	"techniques": ["dab"],
+	"labels": [0, 2, 4, 6],
+	"sampling_rate": 0.5,
+	"distance": {
+		"metric": "snn",
+		"params": {
+			"k": 10
+		}
+	},
+	"max_neighbors": 50
+}
